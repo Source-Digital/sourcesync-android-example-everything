@@ -1,8 +1,9 @@
+<!-- components/EssentialLink.vue -->
 <template>
   <q-item
     clickable
     tag="a"
-    target="_blank"
+    :target="props.target"
     :href="props.link"
   >
     <q-item-section
@@ -25,18 +26,19 @@ const props = defineProps({
     type: String,
     required: true
   },
-
   caption: {
     type: String,
     default: ''
   },
-
   link: {
     type: String,
     default: '#'
   },
-
   icon: {
+    type: String,
+    default: ''
+  },
+  target: {
     type: String,
     default: ''
   }
