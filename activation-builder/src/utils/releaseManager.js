@@ -5,6 +5,55 @@ const DEFAULT_REPO = 'https://github.com/Source-Digital/sourcesync-android'
 const CACHE_KEY = 'sourcesync_settings'
 const CACHE_EXPIRY_DAYS = 7
 
+// Utility to get current settings
+export function getCurrentSettings() {
+  return JSON.parse(localStorage.getItem(CACHE_KEY) || '{}')
+}
+
+// Utility to check for new releases
+export function checkForNewRelease() {
+  const settings = getCurrentSettings()
+  return settings.hasNewRelease || false
+}
+
+// Optional: Add a method to clear cache
+export function clearReleaseCache() {
+  localStorage.removeItem(CACHE_KEY)
+}
+
+// Utility to show new release dialog
+export function showNewReleaseDialog(dialogPlugin) {
+  // First, validate dialog plugin
+  if (!dialogPlugin) {
+    console.error('Dialog plugin is not available')
+    return
+  }
+
+  const settings = getCurrentSettings()
+
+  // Check if there's a new release
+  if (!settings.hasNewRelease) {
+    console.log('No new release available')
+    return
+  }
+
+  // Show dialog for new release
+  dialogPlugin({
+    title: 'New Release Available',
+    message: `A new version of SourceSync Android (${settings.releases[0].name}) has been released. Would you like to view release details?`,
+    cancel: true,
+    persistent: true
+  }).onOk(() => {
+    // Open release notes or redirect to release page
+    window.open(`https://github.com/Source-Digital/sourcesync-android/releases/tag/${settings.releases[0].tag_name}`, '_blank')
+
+    // Optionally, mark as viewed
+    const updatedSettings = getCurrentSettings()
+    updatedSettings.hasNewRelease = false
+    localStorage.setItem(CACHE_KEY, JSON.stringify(updatedSettings))
+  })
+}
+
 export async function updateReleaseSettings(repo = DEFAULT_REPO, forceRefresh = false, tagName = null) {
   // Ensure localStorage structure exists
   if (!localStorage.getItem(CACHE_KEY)) {
@@ -88,6 +137,3 @@ export async function updateReleaseSettings(repo = DEFAULT_REPO, forceRefresh = 
 
   return settings
 }
-
-// Existing utility functions remain the same...
-export { getCurrentSettings, checkForNewRelease, clearReleaseCache, showNewReleaseDialog }
