@@ -2,49 +2,64 @@
   <router-link
     to="/"
     class="orientation-progress"
-    v-if="progress.completed < progress.total"
+    v-if="getCompletedCount() < getTotalCount()"
   >
     <q-tooltip>
-      Remaining steps: {{ progress.remaining.join(', ') }}
+      Remaining steps: {{ getRemainingSteps().join(', ') }}
     </q-tooltip>
 
     <q-linear-progress
-      :value="progress.percentage / 100"
+      :value="getProgress()"
       class="q-mt-none"
       rounded
-      size="4px"
+      size="20px"
       :color="progressColor"
     >
       <div class="absolute-full flex flex-center">
-        <q-badge color="white" text-color="primary" :label="`${progress.completed}/${progress.total} Steps Complete`" />
+        <q-badge
+          color="white"
+          text-color="primary"
+          :label="`${getCompletedCount()}/${getTotalCount()} Steps Complete`"
+        />
       </div>
     </q-linear-progress>
   </router-link>
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
-import { orientationService } from 'src/utils/orientationService'
-import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+import { orientationState, orientationService } from 'src/utils/orientationService'
+import orientationSteps from 'src/data/orientation.json'
 
-const route = useRoute()
-const progress = ref(orientationService.getProgress())
+// Make sure we have a valid state
+if (!orientationState.value) {
+  orientationService.getOrientationState()
+}
 
-// Update progress when route changes
-watch(() => route.path, () => {
-  progress.value = orientationService.getProgress()
-})
+// Helper functions that use the reactive orientationState
+const getCompletedCount = () => {
+  return Object.values(orientationState.value || {}).filter(s => s.completed).length
+}
+
+const getTotalCount = () => {
+  return Object.keys(orientationSteps).length
+}
+
+const getProgress = () => {
+  return getCompletedCount() / getTotalCount()
+}
+
+const getRemainingSteps = () => {
+  return Object.entries(orientationSteps)
+    .filter(([key]) => !orientationState.value?.[key]?.completed)
+    .map(([, step]) => step.title)
+}
 
 const progressColor = computed(() => {
-  const percentage = progress.value.percentage
+  const percentage = getProgress() * 100
   if (percentage < 33) return 'negative'
   if (percentage < 66) return 'warning'
   return 'positive'
-})
-
-// Update progress initially
-onMounted(() => {
-  progress.value = orientationService.getProgress()
 })
 </script>
 
