@@ -14,6 +14,13 @@ const routes = [
     ]
   },
   {
+    path: '/documentation',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/DocumentationPage.vue') }
+    ]
+  },
+  {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue')
   }

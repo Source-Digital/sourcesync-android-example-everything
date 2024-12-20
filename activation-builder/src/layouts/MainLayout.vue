@@ -60,46 +60,22 @@ const linksList = [
     link: '#/settings'
   },
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
+    title: 'Documentation',
+    caption: 'View SDK Documentation',
+    icon: 'description',
+    link: '#/documentation'
   },
   {
     title: 'Github',
-    caption: 'github.com/quasarframework',
+    caption: 'Source Digital on GitHub',
     icon: 'code',
-    link: 'https://github.com/quasarframework'
+    link: 'https://github.com/Source-Digital/sourcesync-android'
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
+    title: 'Support',
+    caption: 'Get Help & Support',
+    icon: 'help',
+    link: 'mailto:dev@sourcedigital.net'
   }
 ]
 
