@@ -54,10 +54,22 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
   {
+    title: 'Home',
+    caption: 'Get Started with SourceSync',
+    icon: 'home',
+    link: '#/'
+  },
+  {
     title: 'Settings',
     caption: 'Configure SDK Settings',
     icon: 'settings',
     link: '#/settings'
+  },
+  {
+    title: 'Activation Builder',
+    caption: 'Create and Test Activations',
+    icon: 'build',
+    link: '#/activation-builder'
   },
   {
     title: 'Documentation',
@@ -69,7 +81,8 @@ const linksList = [
     title: 'Github',
     caption: 'Source Digital on GitHub',
     icon: 'code',
-    link: 'https://github.com/Source-Digital/sourcesync-android'
+    link: 'https://github.com/Source-Digital/sourcesync-android',
+    target: '_blank'
   },
   {
     title: 'Support',
