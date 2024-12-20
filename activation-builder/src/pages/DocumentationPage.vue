@@ -1,4 +1,3 @@
-<!-- src/pages/DocumentationPage.vue -->
 <template>
   <q-page padding>
     <q-card>
@@ -23,17 +22,39 @@
 </template>
 
 <script setup>
-import { computed, getCurrentInstance } from 'vue'
+import { computed, getCurrentInstance, onMounted, onUnmounted } from 'vue'
 import { marked } from 'marked'
 import DOMPurify from 'dompurify'
-const { appContext } = getCurrentInstance();
-const $settings = appContext.config.globalProperties.$settings;
+
+const { appContext } = getCurrentInstance()
+const $settings = appContext.config.globalProperties.$settings
+const $tools = appContext.config.globalProperties.$tools
 
 // Convert markdown to sanitized HTML
 const compiledMarkdown = computed(() => {
   if (!$settings?.readme) return ''
   const rawHtml = marked($settings.readme)
   return DOMPurify.sanitize(rawHtml)
+})
+
+// Track scrolling to detect when user reaches bottom
+const handleScroll = () => {
+  const element = document.documentElement
+  const scrolledToBottom =
+    Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) < 50
+
+  if (scrolledToBottom) {
+    $tools.markOrientationComplete('readDocumentation')
+  }
+}
+
+// Add and remove scroll listener
+onMounted(() => {
+  document.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('scroll', handleScroll)
 })
 </script>
 

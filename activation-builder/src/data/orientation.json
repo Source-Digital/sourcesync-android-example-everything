@@ -1,0 +1,29 @@
+{
+    "readDocumentation": {
+      "step": 1,
+      "title": "Read the Documentation",
+      "description": "Learn about SourceSync's core concepts and features",
+      "icon": "book",
+      "badge": "documentation_master",
+      "route": "/documentation",
+      "successMessage": "Amazing job! You've completed the documentation review. If you need further help, don't forget you can email us for support!"
+    },
+    "configureSettings": {
+      "step": 2,
+      "title": "Configure Your Settings",
+      "description": "Set up your SDK configuration and preferences",
+      "icon": "settings",
+      "badge": "settings_guru",
+      "route": "/settings",
+      "successMessage": "Great work! Your settings are configured and you're ready for the next step."
+    },
+    "buildActivation": {
+      "step": 3,
+      "title": "Build Your First Activation",
+      "description": "Create interactive overlays using our visual builder",
+      "icon": "build",
+      "badge": "activation_creator",
+      "route": "/activation-builder",
+      "successMessage": "Congratulations! You've created your first activation. You're now ready to start building amazing interactive experiences!"
+    }
+  }

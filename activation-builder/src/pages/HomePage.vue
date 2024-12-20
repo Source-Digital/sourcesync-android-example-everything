@@ -1,4 +1,3 @@
-<!-- src/pages/HomePage.vue -->
 <template>
   <q-page padding>
     <div class="row q-col-gutter-lg">
@@ -13,7 +12,6 @@
           </q-card-section>
 
           <q-card-section class="q-pt-none">
-            <!-- [Placeholder] Hero animation/video showing SourceSync in action -->
             <div class="placeholder-media q-my-md">
               <div class="text-center text-grey-7">
                 [Video placeholder: Short demo showing overlays being added to video content,
@@ -33,42 +31,37 @@
 
           <q-card-section class="q-pt-none">
             <q-list>
-              <q-item clickable v-ripple to="/documentation">
+              <q-item
+                v-for="(step, id) in orientationSteps"
+                :key="id"
+                :to="step.route"
+                clickable
+                v-ripple
+              >
                 <q-item-section avatar>
-                  <q-icon name="book" color="primary" />
+                  <q-icon
+                    :name="step.icon"
+                    :color="getCompletionStatus(id) ? 'positive' : 'primary'"
+                  />
                 </q-item-section>
                 <q-item-section>
-                  <q-item-label>1. Read the Documentation</q-item-label>
-                  <q-item-label caption>
-                    Learn about SourceSync's core concepts and features
-                  </q-item-label>
+                  <q-item-label>{{ step.step }}. {{ step.title }}</q-item-label>
+                  <q-item-label caption>{{ step.description }}</q-item-label>
                 </q-item-section>
-              </q-item>
-
-              <q-item clickable v-ripple to="/settings">
-                <q-item-section avatar>
-                  <q-icon name="settings" color="primary" />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label>2. Configure Your Settings</q-item-label>
-                  <q-item-label caption>
-                    Set up your SDK configuration and preferences
-                  </q-item-label>
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-ripple to="/activation-builder">
-                <q-item-section avatar>
-                  <q-icon name="build" color="primary" />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label>3. Build Your First Activation</q-item-label>
-                  <q-item-label caption>
-                    Create interactive overlays using our visual builder
-                  </q-item-label>
+                <q-item-section side v-if="getCompletionStatus(id)">
+                  <q-icon name="check" color="positive" />
                 </q-item-section>
               </q-item>
             </q-list>
+
+            <div class="text-center q-mt-lg">
+              <q-btn
+                flat
+                color="grey"
+                label="Reset Orientation Progress"
+                @click="handleReset"
+              />
+            </div>
           </q-card-section>
         </q-card>
       </div>
@@ -83,7 +76,6 @@
           <q-card-section class="q-pt-none">
             <div class="row q-col-gutter-md">
               <div class="col-12">
-                <!-- [Placeholder] Feature illustration -->
                 <div class="placeholder-media q-mb-sm">
                   <div class="text-center text-grey-7">
                     [Image: Multiple overlay positions diagram]
@@ -91,12 +83,11 @@
                 </div>
                 <div class="text-subtitle2">Multiple Overlay Positions</div>
                 <div class="text-caption">
-                  Support for top, bottom, left, and right overlay positions with independent content streams
+                  Support for default "top", "bottom", "left", and "right" overlay positions (and anything custom you want) with independent content streams
                 </div>
               </div>
 
               <div class="col-12">
-                <!-- [Placeholder] Feature illustration -->
                 <div class="placeholder-media q-mb-sm">
                   <div class="text-center text-grey-7">
                     [Animation: Preview to detail transition]
@@ -104,12 +95,11 @@
                 </div>
                 <div class="text-subtitle2">Preview & Detail Views</div>
                 <div class="text-caption">
-                  Seamless transitions between compact previews and detailed content views
+                  Seamless transitions between compact previews and detailed content views using any event or input method you want!
                 </div>
               </div>
 
               <div class="col-12">
-                <!-- [Placeholder] Feature illustration -->
                 <div class="placeholder-media q-mb-sm">
                   <div class="text-center text-grey-7">
                     [Image: Native rendering components]
@@ -129,7 +119,26 @@
 </template>
 
 <script setup>
-// Component logic here if needed
+import { getCurrentInstance } from 'vue'
+import orientationSteps from '../data/orientation.json'
+import { orientationState, orientationService } from 'src/utils/orientationService'
+
+const { appContext } = getCurrentInstance()
+
+// Helper function to safely check completion status
+const getCompletionStatus = (id) => {
+  return orientationState.value?.[id]?.completed || false
+}
+
+// Ensure we have an initial state
+if (!orientationState.value) {
+  orientationService.getOrientationState()
+}
+
+// Handle reset with error catching
+const handleReset = () => {
+  appContext.config.globalProperties.$tools?.resetOrientation()
+}
 </script>
 
 <style lang="scss" scoped>

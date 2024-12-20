@@ -63,12 +63,15 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, getCurrentInstance } from 'vue'
 import PreviewSettings from '../components/builder/PreviewSettings.vue'
 import BasicInfo from '../components/builder/BasicInfo.vue'
 import TimeWindows from '../components/builder/TimeWindows.vue'
 import TemplateBuilder from '../components/builder/TemplateBuilder.vue'
 import ActivationPreview from '../components/builder/ActivationPreview.vue'
+
+const { appContext } = getCurrentInstance();
+const $tools = appContext.config.globalProperties.$tools;
 
 // Initialize activation structure
 const activation = ref({
@@ -123,6 +126,7 @@ const updateTemplate = (newVal) => {
 // Generate final JSON
 const generateJson = () => {
   console.log('Generated Activation:', JSON.stringify(activation.value, null, 2))
+  $tools.markOrientationComplete('buildActivation')
 }
 
 </script>

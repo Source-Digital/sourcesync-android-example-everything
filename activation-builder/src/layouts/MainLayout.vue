@@ -22,6 +22,8 @@
       </q-toolbar>
     </q-header>
 
+    <OrientationProgress />
+
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
@@ -51,6 +53,7 @@
 <script setup>
 import { ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import OrientationProgress from 'components/OrientationProgress.vue'
 
 const linksList = [
   {

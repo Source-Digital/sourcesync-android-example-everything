@@ -71,6 +71,7 @@
   import { ref, computed, getCurrentInstance } from 'vue'
   const { appContext } = getCurrentInstance();
   const $settings = appContext.config.globalProperties.$settings;
+  const $tools = appContext.config.globalProperties.$tools;
 
   const tab = ref('settings')
 
@@ -87,7 +88,10 @@
   }
 
   function exportSettings() {
-    if ($settings?.config) downloadJson($settings.config, 'settings.json')
+    if ($settings?.config) {
+      downloadJson($settings.config, 'settings.json')
+      $tools.markOrientationComplete('configureSettings')
+    }
   }
 
   function exportSchema() {
