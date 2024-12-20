@@ -11,6 +11,7 @@ export async function updateReleaseSettings(repo = DEFAULT_REPO, forceRefresh = 
     localStorage.setItem(CACHE_KEY, JSON.stringify({
       releases: [],
       schema: null,
+      config: null,
       lastUpdated: null,
       savedDate: null
     }))
@@ -52,21 +53,28 @@ export async function updateReleaseSettings(repo = DEFAULT_REPO, forceRefresh = 
     }
   }
 
-  // Refresh schema if cache is stale or force refresh
-  if (forceRefresh || isCacheStale || !settings.schema) {
+  // Refresh schema and config if cache is stale or force refresh
+  if (forceRefresh || isCacheStale || !settings.schema || !settings.config) {
     try {
       // Use specified tag or first release tag
       const useTag = tagName || settings.releases[0]?.tag_name
 
       if (useTag) {
-        const schemaUrl = `https://raw.githubusercontent.com/${new URL(repo).pathname.slice(1)}/${useTag}/src/main/assets/sourcesync_config_schema.json`
+        const baseUrl = `https://raw.githubusercontent.com/${new URL(repo).pathname.slice(1)}/${useTag}/src/main/assets`
 
-        const schemaResponse = await axios.get(schemaUrl)
+        // Fetch schema
+        const schemaResponse = await axios.get(`${baseUrl}/sourcesync_config_schema.json`)
         settings.schema = schemaResponse.data
-        settings.schemaVersion = useTag
+
+        // Fetch config
+        const configResponse = await axios.get(`${baseUrl}/sourcesync_config.json`)
+        settings.config = configResponse.data
+
+        // Update release version
+        settings.releaseVersion = useTag
       }
     } catch (error) {
-      console.error('Failed to fetch schema', error)
+      console.error('Failed to fetch schema or config', error)
     }
   }
 
@@ -94,7 +102,6 @@ export function clearReleaseCache() {
 
 // Utility to show new release dialog
 export function showNewReleaseDialog(dialogPlugin) {
-  console.log(dialogPlugin)
   // First, validate dialog plugin
   if (!dialogPlugin) {
     console.error('Dialog plugin is not available')

@@ -13,6 +13,9 @@
 
         <q-toolbar-title>
           SourceSync Native Tools
+          <span v-if="$settings?.releaseVersion" class="q-ml-sm text-grey-5">
+            {{ $settings.releaseVersion }}
+          </span>
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
@@ -50,6 +53,12 @@ import { ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
+  {
+    title: 'Settings',
+    caption: 'Configure SDK Settings',
+    icon: 'settings',
+    link: '#/settings'
+  },
   {
     title: 'Docs',
     caption: 'quasar.dev',

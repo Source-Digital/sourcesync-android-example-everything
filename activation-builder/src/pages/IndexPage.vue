@@ -3,23 +3,6 @@
     <div class="row q-col-gutter-md">
       <!-- Left Column - Form -->
       <div class="col-12 col-md-8">
-        <!-- Debug: Display $settings -->
-        <pre>{{ $settings }}</pre>
-
-        <!-- Release Selection -->
-        <q-select
-          v-model="selectedRelease"
-          :options="releaseOptions"
-          option-label="label"
-          option-value="value"
-          label="Select a Release"
-          outlined
-          @input="handleSelection"
-        >
-          <template v-slot:selected-item="scope">
-            <span>{{ scope.opt.label }}</span>
-          </template>
-        </q-select>
 
         <q-card>
           <q-card-section>
@@ -80,14 +63,12 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, getCurrentInstance } from 'vue'
+import { ref, watch } from 'vue'
 import PreviewSettings from '../components/builder/PreviewSettings.vue'
 import BasicInfo from '../components/builder/BasicInfo.vue'
 import TimeWindows from '../components/builder/TimeWindows.vue'
 import TemplateBuilder from '../components/builder/TemplateBuilder.vue'
 import ActivationPreview from '../components/builder/ActivationPreview.vue'
-const { appContext } = getCurrentInstance();
-const $settings = appContext.config.globalProperties.$settings;
 
 // Initialize activation structure
 const activation = ref({
@@ -144,25 +125,4 @@ const generateJson = () => {
   console.log('Generated Activation:', JSON.stringify(activation.value, null, 2))
 }
 
-// Selected release
-const selectedRelease = ref(null)
-
-// Process $settings for dropdown options
-const releaseOptions = computed(() => {
-  if (!$settings?.releases) return []
-  return $settings.releases.map((release) => ({
-    label: release.name,
-    value: release.tag_name,
-    data: release,
-  }))
-})
-
-// Handle selection
-const handleSelection = (tagName) => {
-  const selected = $settings.releases.find(release => release.tag_name === tagName)
-  if (selected) {
-    console.log('Selected Release:', selected)
-    // Add custom logic here
-  }
-}
 </script>

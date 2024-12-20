@@ -4,7 +4,7 @@
     default-opened
     group="builder"
     icon="info"
-    label="Basic Information!!"
+    label="Basic Information"
     header-class="text-h5"
   >
     <q-card>
