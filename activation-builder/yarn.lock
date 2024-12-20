@@ -922,6 +922,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/trusted-types@npm:^2.0.7":
+  version: 2.0.7
+  resolution: "@types/trusted-types@npm:2.0.7"
+  checksum: 8e4202766a65877efcf5d5a41b7dd458480b36195e580a3b1085ad21e948bc417d55d6f8af1fd2a7ad008015d4117d5fdfe432731157da3c68678487174e4ba3
+  languageName: node
+  linkType: hard
+
 "@vitejs/plugin-vue@npm:^5.1.4":
   version: 5.2.1
   resolution: "@vitejs/plugin-vue@npm:5.2.1"
@@ -1106,9 +1113,11 @@ __metadata:
     "@vue/eslint-config-prettier": ^10.1.0
     autoprefixer: ^10.4.2
     axios: ^1.2.1
+    dompurify: ^3.2.3
     eslint: ^9.14.0
     eslint-plugin-vue: ^9.30.0
     globals: ^15.12.0
+    marked: ^15.0.4
     postcss: ^8.4.14
     prettier: ^3.3.3
     quasar: ^2.16.0
@@ -1886,6 +1895,18 @@ __metadata:
   version: 1.2.0
   resolution: "destroy@npm:1.2.0"
   checksum: 0acb300b7478a08b92d810ab229d5afe0d2f4399272045ab22affa0d99dbaf12637659411530a6fcd597a9bdac718fc94373a61a95b4651bbc7b83684a565e38
+  languageName: node
+  linkType: hard
+
+"dompurify@npm:^3.2.3":
+  version: 3.2.3
+  resolution: "dompurify@npm:3.2.3"
+  dependencies:
+    "@types/trusted-types": ^2.0.7
+  dependenciesMeta:
+    "@types/trusted-types":
+      optional: true
+  checksum: cd66ae8b22e1cfe5bc207b95fc119ce62f9a56eb313a9a1af6262d789d84e7bd27e29f26ed80110d108670dacb9527cb96ddf48a1da89126a37ec8b48702279a
   languageName: node
   linkType: hard
 
@@ -3272,6 +3293,15 @@ __metadata:
     promise-retry: ^2.0.1
     ssri: ^12.0.0
   checksum: 6fb2fee6da3d98f1953b03d315826b5c5a4ea1f908481afc113782d8027e19f080c85ae998454de4e5f27a681d3ec58d57278f0868d4e0b736f51d396b661691
+  languageName: node
+  linkType: hard
+
+"marked@npm:^15.0.4":
+  version: 15.0.4
+  resolution: "marked@npm:15.0.4"
+  bin:
+    marked: bin/marked.js
+  checksum: a3832ebfe1722f89a43afc7056b7135dffc5247dcc486b4a9195b5a23453236ec31f024c448f6bdbd0eab1872eaa759092b7c52dfae995a78f150b801d55b96f
   languageName: node
   linkType: hard
 

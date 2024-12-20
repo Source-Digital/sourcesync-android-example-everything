@@ -34,9 +34,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@vue/eslint-config-prettier", "virtual:2cba12039bd6bb0b7c5a8fbd6ca8352727773bdf625fadf1393338b56d2b0c902590c3737bd0685c97cc17d7829bbd0a6329365d7b673ce72f145a07c54a627f#npm:10.1.0"],\
             ["autoprefixer", "virtual:2cba12039bd6bb0b7c5a8fbd6ca8352727773bdf625fadf1393338b56d2b0c902590c3737bd0685c97cc17d7829bbd0a6329365d7b673ce72f145a07c54a627f#npm:10.4.20"],\
             ["axios", "npm:1.7.9"],\
+            ["dompurify", "npm:3.2.3"],\
             ["eslint", "virtual:2cba12039bd6bb0b7c5a8fbd6ca8352727773bdf625fadf1393338b56d2b0c902590c3737bd0685c97cc17d7829bbd0a6329365d7b673ce72f145a07c54a627f#npm:9.17.0"],\
             ["eslint-plugin-vue", "virtual:2cba12039bd6bb0b7c5a8fbd6ca8352727773bdf625fadf1393338b56d2b0c902590c3737bd0685c97cc17d7829bbd0a6329365d7b673ce72f145a07c54a627f#npm:9.32.0"],\
             ["globals", "npm:15.14.0"],\
+            ["marked", "npm:15.0.4"],\
             ["postcss", "npm:8.4.49"],\
             ["prettier", "npm:3.4.2"],\
             ["quasar", "npm:2.17.5"],\
@@ -1193,6 +1195,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/trusted-types", [\
+        ["npm:2.0.7", {\
+          "packageLocation": "./.yarn/cache/@types-trusted-types-npm-2.0.7-a07fc44f59-8e4202766a.zip/node_modules/@types/trusted-types/",\
+          "packageDependencies": [\
+            ["@types/trusted-types", "npm:2.0.7"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@vitejs/plugin-vue", [\
         ["npm:5.2.1", {\
           "packageLocation": "./.yarn/cache/@vitejs-plugin-vue-npm-5.2.1-25d60c16d1-4f3add595b.zip/node_modules/@vitejs/plugin-vue/",\
@@ -1449,9 +1460,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@vue/eslint-config-prettier", "virtual:2cba12039bd6bb0b7c5a8fbd6ca8352727773bdf625fadf1393338b56d2b0c902590c3737bd0685c97cc17d7829bbd0a6329365d7b673ce72f145a07c54a627f#npm:10.1.0"],\
             ["autoprefixer", "virtual:2cba12039bd6bb0b7c5a8fbd6ca8352727773bdf625fadf1393338b56d2b0c902590c3737bd0685c97cc17d7829bbd0a6329365d7b673ce72f145a07c54a627f#npm:10.4.20"],\
             ["axios", "npm:1.7.9"],\
+            ["dompurify", "npm:3.2.3"],\
             ["eslint", "virtual:2cba12039bd6bb0b7c5a8fbd6ca8352727773bdf625fadf1393338b56d2b0c902590c3737bd0685c97cc17d7829bbd0a6329365d7b673ce72f145a07c54a627f#npm:9.17.0"],\
             ["eslint-plugin-vue", "virtual:2cba12039bd6bb0b7c5a8fbd6ca8352727773bdf625fadf1393338b56d2b0c902590c3737bd0685c97cc17d7829bbd0a6329365d7b673ce72f145a07c54a627f#npm:9.32.0"],\
             ["globals", "npm:15.14.0"],\
+            ["marked", "npm:15.0.4"],\
             ["postcss", "npm:8.4.49"],\
             ["prettier", "npm:3.4.2"],\
             ["quasar", "npm:2.17.5"],\
@@ -2367,6 +2380,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/destroy-npm-1.2.0-6a511802e2-0acb300b74.zip/node_modules/destroy/",\
           "packageDependencies": [\
             ["destroy", "npm:1.2.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["dompurify", [\
+        ["npm:3.2.3", {\
+          "packageLocation": "./.yarn/cache/dompurify-npm-3.2.3-4fa119eef7-cd66ae8b22.zip/node_modules/dompurify/",\
+          "packageDependencies": [\
+            ["dompurify", "npm:3.2.3"],\
+            ["@types/trusted-types", "npm:2.0.7"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3918,6 +3941,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["proc-log", "npm:5.0.0"],\
             ["promise-retry", "npm:2.0.1"],\
             ["ssri", "npm:12.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["marked", [\
+        ["npm:15.0.4", {\
+          "packageLocation": "./.yarn/cache/marked-npm-15.0.4-7ab4177077-a3832ebfe1.zip/node_modules/marked/",\
+          "packageDependencies": [\
+            ["marked", "npm:15.0.4"]\
           ],\
           "linkType": "HARD"\
         }]\
